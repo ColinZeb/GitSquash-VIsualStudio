@@ -30,6 +30,7 @@
 
         private readonly ReactiveCommand<GitCommandResponse> fetchOrigin;
         private readonly ReactiveCommand<GitCommandResponse> pushForce;
+        private readonly ReactiveCommand<GitCommandResponse> push;
         private readonly ReactiveCommand<object> cancelOperation;
         private readonly ReactiveCommand<GitCommandResponse> abortRebase;
         private readonly ReactiveCommand<GitCommandResponse> continueRebase;
@@ -48,7 +49,7 @@
 
         private GitBranch currentBranch;
 
-        private bool forcePush = true;
+        private bool forcePush = false;
 
         private GitCommandResponse gitCommandResponse;
 
@@ -124,6 +125,7 @@
             this.continueRebase = this.GenerateGitCommand(canContinueRebase, this.PerformContinueRebase);
             this.abortRebase = this.GenerateGitCommand(canContinueRebase, this.PerformAbortRebase);
             this.pushForce = this.GenerateGitCommand(isNotBusyObservable, this.PerformPushForce);
+            this.push = this.GenerateGitCommand(isNotBusyObservable, this.PerformPush);
             this.fetchOrigin = this.GenerateGitCommand(isNotBusyObservable, this.PerformFetchOrigin);
             this.skip = this.GenerateGitCommand(canContinueRebase, this.PerformSkipRebase);
 
@@ -180,6 +182,9 @@
 
         /// <inheritdoc />
         public ICommand PushForce => this.pushForce;
+
+        /// <inheritdoc />
+        public ICommand Push => this.push;
 
         /// <inheritdoc />
         public ICommand FetchOrigin => this.fetchOrigin;
@@ -486,6 +491,16 @@
             return forcePushOutput;
         }
 
+        private async Task<GitCommandResponse> PerformPush(CancellationToken token)
+        {
+            if (token.IsCancellationRequested)
+            {
+                return null;
+            }
+
+            GitCommandResponse forcePushOutput = await this.SquashWrapper.Push(token);
+            return forcePushOutput;
+        }
         private async Task<GitCommandResponse> PerformFetchOrigin(CancellationToken token)
         {
             if (token.IsCancellationRequested)
@@ -513,6 +528,10 @@
             if (this.DoForcePush)
             {
                 forcePushOutput = await this.PerformPushForce(token);
+            }
+            else
+            {
+                await this.PerformPush(token);
             }
 
             GitCommandResponse rebaseOutput = null;

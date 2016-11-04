@@ -79,6 +79,13 @@
         Task<GitCommandResponse> PushForce(CancellationToken token);
 
         /// <summary>
+        /// 推送，不强制
+        /// </summary>
+        /// <param name="token">A cancellation token that allows for the operation to be exited early.</param>
+        /// <returns>Details about the operation.</returns>
+        Task<GitCommandResponse> Push(CancellationToken token);
+
+        /// <summary>
         /// Fetches the origin.
         /// </summary>
         /// <param name="token">A cancellation token that allows for the operation to be exited early.</param>

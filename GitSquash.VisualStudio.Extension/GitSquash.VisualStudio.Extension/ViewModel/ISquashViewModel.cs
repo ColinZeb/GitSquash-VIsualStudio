@@ -52,6 +52,11 @@
         ICommand PushForce { get; }
 
         /// <summary>
+        /// Gets a command which will a push.
+        /// </summary>
+        ICommand Push { get; }
+
+        /// <summary>
         /// Gets a command which will pull the origin.
         /// </summary>
         ICommand FetchOrigin { get; }

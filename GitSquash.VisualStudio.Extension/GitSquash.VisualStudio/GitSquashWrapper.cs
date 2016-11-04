@@ -111,6 +111,11 @@ namespace GitSquash.VisualStudio
         }
 
         /// <inheritdoc />
+        public async Task<GitCommandResponse> Push(CancellationToken token)
+        {
+            return await this.gitProcess.RunGit("push", token);
+        }
+        /// <inheritdoc />
         public Task<IList<GitCommit>> GetCommitsForBranch(GitBranch branch, CancellationToken token, GitLogOptions logOptions, int number = 25)
         {
             return this.branchManager.GetCommitsForBranch(branch, 0, number, logOptions, token);
