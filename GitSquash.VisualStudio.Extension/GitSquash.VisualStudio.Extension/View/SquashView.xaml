@@ -31,14 +31,14 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <WrapPanel Margin="0"  Orientation="Horizontal" VerticalAlignment="Center">
-                <teamExplorer:TextLink Text="Squash" Localization.Attributes="Text (Modifiable Readable Text)" Command="{Binding Squash}" />
+                <teamExplorer:TextLink Text="合并提交(Squash)" Localization.Attributes="Text (Modifiable Readable Text)" Command="{Binding Squash}" />
                 <Separator Style="{StaticResource VerticalSeparator}" />
                 <teamExplorer:TextLink Text="拉取(变基)" Localization.Attributes="Text (Modifiable Readable Text)" Command="{Binding Rebase}" />
                 <Separator Style="{StaticResource VerticalSeparator}" />
                 <teamExplorer:TextLink Text="Push" Localization.Attributes="Text (Modifiable Readable Text)" Command="{Binding Push}" />
 
                 <Separator Style="{StaticResource VerticalSeparator}" />
-                <teamExplorer:TextLink Text="Push (Force)" Localization.Attributes="Text (Modifiable Readable Text)" Command="{Binding PushForce}" />
+                <teamExplorer:TextLink Text="Push (Force)" Localization.Attributes="Text (Modifiable Readable Text)" Command="{Binding PushForce}" IsEnabled="{Binding Mode=TwoWay, Path=DoForcePush}" />
                 <Separator Style="{StaticResource VerticalSeparator}" />
                 <teamExplorer:TextLink Text="获取" Localization.Attributes="Text (Modifiable Readable Text)" Command="{Binding FetchOrigin}" />
             </WrapPanel>
@@ -84,7 +84,7 @@
                 <wpf:TextBlockControl Text="分支:" Margin="6,6,3,0"  />
                 <teamExplorer:TextLink Text="{Binding CurrentBranch.FriendlyName}"  Margin="3,6,3,0" Command="{Binding ChangeBranch}" />
             </StackPanel>
-            <framework:SectionControl HeaderText="父提交" IsExpanded="True" Margin="0,6,0,0" IsBusy="{Binding IsBusy}" ShowProgressWhenBusy="True"  >
+            <framework:SectionControl HeaderText="父提交" IsExpanded="False" Margin="0,6,0,0" IsBusy="{Binding IsBusy}" ShowProgressWhenBusy="True"  >
                 <framework:SectionControl.Content>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -130,7 +130,7 @@
                 </framework:SectionControl.Content>
             </framework:SectionControl>
 
-            <framework:SectionControl HeaderText="推送" IsExpanded="True" Margin="0,6,0,0" IsBusy="{Binding IsBusy}" ShowProgressWhenBusy="True" >
+            <framework:SectionControl HeaderText="推送" IsExpanded="False" Margin="0,6,0,0" IsBusy="{Binding IsBusy}" ShowProgressWhenBusy="True" >
                 <framework:SectionControl.Content>
                     <CheckBox IsChecked="{Binding Mode=TwoWay, Path=DoForcePush}" Background="Transparent" Content="执行强制推送 (不建议)" Margin="6,6,3,0" ToolTip="如果你确定要这么做，请通知你的队友" />
                 </framework:SectionControl.Content>
