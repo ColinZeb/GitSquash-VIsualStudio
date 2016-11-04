@@ -84,7 +84,7 @@
                 <wpf:TextBlockControl Text="分支:" Margin="6,6,3,0"  />
                 <teamExplorer:TextLink Text="{Binding CurrentBranch.FriendlyName}"  Margin="3,6,3,0" Command="{Binding ChangeBranch}" />
             </StackPanel>
-            <framework:SectionControl HeaderText="父提交" IsExpanded="False" Margin="0,6,0,0" IsBusy="{Binding IsBusy}" ShowProgressWhenBusy="True"  >
+            <framework:SectionControl HeaderText="父提交" IsExpanded="True" Margin="0,6,0,0" IsBusy="{Binding IsBusy}" ShowProgressWhenBusy="True"  >
                 <framework:SectionControl.Content>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -107,7 +107,7 @@
 
                             </ComboBox>
                         </StackPanel>
-                        <DataGrid Grid.Row="1" IsReadOnly="True" SelectionMode="Single" SelectedValue="{Binding SelectedCommit}"  ItemsSource="{Binding BranchCommits}" AutoGenerateColumns="False" Margin="0,0,6,0">
+                        <DataGrid Grid.Row="1" IsReadOnly="True" SelectionMode="Single" SelectedValue="{Binding SelectedCommit}"  ItemsSource="{Binding BranchCommits}" AutoGenerateColumns="False" Margin="0,0,6,0" Background="{x:Null}" BorderBrush="{x:Null}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn MaxWidth="50" Binding="{Binding Sha, Converter={converters:PrefixValueConverter PrefixLength=6}}" Header="ID"/>
                                 <DataGridTextColumn Binding="{Binding MessageShort}"  Width="250" Header="消息" />
