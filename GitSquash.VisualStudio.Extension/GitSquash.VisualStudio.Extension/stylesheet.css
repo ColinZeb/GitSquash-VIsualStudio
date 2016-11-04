@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 */
 
 #header {
-  color: #FFF;
+  /*color: #FFF;*/
   background: #68217a;
   position:relative;
 }
