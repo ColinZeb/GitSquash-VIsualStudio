@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="GitSquash.VisualStudio.Extension.Glenn Watson.9d974827-f458-4741-b96c-f6926984b1d8" Version="1.2.0.1" Language="zh-Hans" Publisher="Glenn Watson,Colin Zeb" />
+    <Identity Id="GitSquash.VisualStudio.Extension.Glenn Watson.9d974827-f458-4741-b96c-f6926984b1d8" Version="1.2.0.2" Language="zh-Hans" Publisher="Glenn Watson,Colin Zeb" />
     <DisplayName>Git Squash</DisplayName>
     <Description xml:space="preserve">实现在VS的团队资源管理器中执行拉取变基</Description>
     <MoreInfo>https://github.com/ColinZeb/GitSquash-VIsualStudio</MoreInfo>
